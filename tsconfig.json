@@ -14,6 +14,7 @@
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@utilities/*": ["./src/utilities/*"],
+      "@typography/*": ["./src/typography/*"],
       "@styles/*": ["./src/styles/*"],
       "@images/*": ["./public/images/*"],
       "@backgrounds/*": ["./public/backgrounds/*"]

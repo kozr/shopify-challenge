@@ -1,6 +1,7 @@
 import React from 'react'
+import styled from 'styled-components'
 
-export interface MovieDetails {
+export interface Movie {
   Title: string
   Year: string
   imdbID: string
@@ -8,19 +9,18 @@ export interface MovieDetails {
   Poster: string
 }
 
-const MovieCard = ({
-  Title,
-  Year,
-  imdbID,
-  Poster,
-}: MovieDetails): JSX.Element => {
+const MovieContainer = styled.div`
+  color: white;
+`
+
+const MovieCard = ({ Title, Year, imdbID, Poster }: Movie): JSX.Element => {
   return (
-    <>
+    <MovieContainer>
       <h1>Title: {Title}</h1>
       <p>Year: {Year}</p>
       <p>IMDB ID:{imdbID}</p>
-      <img src={Poster}></img>
-    </>
+      <img alt={Title} src={Poster}></img>
+    </MovieContainer>
   )
 }
 
