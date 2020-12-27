@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "module": "ES2020",
+    "target": "ES2020",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@utilities/*": ["./src/utilities/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@images/*": ["./public/images/*"],
+      "@backgrounds/*": ["./public/backgrounds/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
