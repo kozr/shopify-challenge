@@ -1,6 +1,8 @@
+import Button from '../typography/Button'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Movie } from './ResultCard'
+import { Movie } from './Movie'
+import NomineeCard from './NomineeCard'
 
 const MovieContainer = styled.div`
   color: white;
@@ -8,28 +10,29 @@ const MovieContainer = styled.div`
 
 interface NominationsListProps {
   movies: Movie[]
-  removeNominations: (m: Movie) => void
+  removeNomination: (m: Movie) => void
 }
 
-const NominationList = ({ movies }: NominationsListProps): JSX.Element => {
+const NominationList = ({
+  movies,
+  removeNomination,
+}: NominationsListProps): JSX.Element => {
   const [nominationsJSX, setNominationsJSX] = useState<JSX.Element>()
   useEffect(() => {
     if (movies) {
-      const moviesJSX = movies.map(
-        ({ Title, Year, imdbID, Poster }: Movie, index: number) => (
-          <MovieContainer key={index}>
-            <h1>Title: {Title}</h1>
-            <p>Year: {Year}</p>
-            <p>IMDB ID:{imdbID}</p>
-            <img alt={Title} src={Poster}></img>
-          </MovieContainer>
-        )
-      )
+      const moviesJSX = movies.map((movie: Movie, index: number) => (
+        <MovieContainer key={index}>
+          <NomineeCard {...movie} />
+          <Button onClick={() => removeNomination(movie)}>
+            Remove Nominee
+          </Button>
+        </MovieContainer>
+      ))
       setNominationsJSX(<>{moviesJSX}</>)
     } else {
       setNominationsJSX(<p>no nominees</p>)
     }
-  }, [movies])
+  }, [movies, removeNomination])
 
   return <>{nominationsJSX}</>
 }

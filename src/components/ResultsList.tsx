@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import MovieCard, { Movie } from './ResultCard'
+import ResultCard from './ResultCard'
 import DisabledButton from '../typography/DisabledButton'
 import Button from '../typography/Button'
+import { Movie } from './Movie'
 
 const MovieContainer = styled.div`
   color: white;
@@ -12,12 +13,12 @@ const MovieContainer = styled.div`
 type ResultListProps = {
   movies: Movie[]
   mayAdd: boolean
-  addNominations: (m: Movie) => void
+  addNomination: (m: Movie) => void
 }
 const ResultsList = ({
   movies,
   mayAdd,
-  addNominations,
+  addNomination,
 }: ResultListProps): JSX.Element => {
   const [resultsJSX, setResultsJSX] = useState<JSX.Element>()
   useEffect(() => {
@@ -25,9 +26,9 @@ const ResultsList = ({
     if (movies) {
       const moviesJSX = movies.map((movie: Movie, index: number) => (
         <MovieContainer key={index}>
-          <MovieCard {...movie} />
+          <ResultCard {...movie} />
           {mayAdd ? (
-            <Button onClick={() => addNominations(movie)}>Nominate</Button>
+            <Button onClick={() => addNomination(movie)}>Nominate</Button>
           ) : (
             <DisabledButton>Nominate</DisabledButton>
           )}
@@ -38,7 +39,7 @@ const ResultsList = ({
       const errorJSX = <h1>Results not found, please be more precise</h1>
       setResultsJSX(errorJSX)
     }
-  }, [movies, mayAdd, addNominations])
+  }, [movies, mayAdd, addNomination])
 
   return <>{resultsJSX}</>
 }

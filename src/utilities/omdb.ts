@@ -1,4 +1,4 @@
-import { Movie } from '@components/MovieCard'
+import { Movie } from '../components/Movie'
 import axios from 'axios'
 import { OMDB_WRAPPER_URL, KEYWORDS, MOVIE_TITLE } from '../constants/utilities'
 

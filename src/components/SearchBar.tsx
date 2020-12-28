@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import Input from '../typography/Input'
 import Radio from '../typography/Radio'
 import { KEYWORDS, MOVIE_TITLE } from '../constants/utilities'
-import { callOmdb, OmdbQuery, OmdbResponse } from '../utilities/omdb'
+import { callOmdb, OmdbQuery } from '../utilities/omdb'
 import { InferProps } from 'prop-types'
-import { Movie } from './ResultCard'
+import { Movie } from './Movie'
 
 type hook = {
   setResults: React.Dispatch<React.SetStateAction<Movie[]>>

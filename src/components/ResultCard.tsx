@@ -1,13 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
-export interface Movie {
-  Title: string
-  Year: string
-  imdbID: string
-  Type: string
-  Poster: string
-}
+import { Movie } from './Movie'
 
 const MovieContainer = styled.div`
   color: white;

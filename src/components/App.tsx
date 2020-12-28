@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import GlobalFonts from '../styles/fonts'
 
 import SearchBar from './SearchBar'
 import NominationList from './NominationList'
-import { Movie } from './ResultCard'
+import { Movie } from './Movie'
 import ResultsList from './ResultsList'
 import styled from 'styled-components'
 
@@ -22,14 +22,14 @@ export function App(): JSX.Element {
   const [nominations, setNominations] = useState([])
 
   const removeNomination = (movie: Movie) => {
-    const temp = nominations
-    temp.filter(m => movie != m)
-    setNominations(temp)
+    setMovieResults([...movieResults, movie])
+    setNominations(nominations.filter(m => movie.imdbID != m.imdbID))
   }
 
-  const addNominations = (movie: Movie) => {
+  const addNomination = (movie: Movie) => {
     const temp = [...nominations, movie]
     setNominations(temp)
+    setMovieResults(movieResults.filter(m => movie.imdbID != m.imdbID))
   }
   return (
     <>
@@ -41,14 +41,14 @@ export function App(): JSX.Element {
           <ResultsList
             movies={movieResults}
             mayAdd={nominations.length < 5}
-            addNominations={addNominations}
+            addNomination={addNomination}
           />
         </LeftColumn>
         <RightColumn>
           <h1>Nominees</h1>
           <NominationList
             movies={nominations}
-            removeNominations={removeNomination}
+            removeNomination={removeNomination}
           />
         </RightColumn>
       </Columns>
