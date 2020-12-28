@@ -1,37 +1,57 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState } from 'react'
 import GlobalFonts from '../styles/fonts'
 
-import MovieCard, { Movie } from './MovieCard'
-import Input from '../typography/Input'
+import SearchBar from './SearchBar'
 import NominationList from './NominationList'
+import { Movie } from './ResultCard'
+import ResultsList from './ResultsList'
+import styled from 'styled-components'
+
+const Columns = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+`
+
+const LeftColumn = styled.div``
+const RightColumn = styled.div``
 
 export function App(): JSX.Element {
-  const Background = styled.div`
-    font-family: 'HKGrotesk Light';
-    height: 100%;
-    background-color: #3f4349;
-    height: 100vh;
-    width: 100vw;
-  `
+  const [movieResults, setMovieResults] = useState([])
+  const [nominations, setNominations] = useState([])
 
-  const dummyMovie: Movie = {
-    Title: 'string',
-    Year: 'string',
-    imdbID: 'string',
-    Type: 'string',
-    Poster: 'string',
+  const removeNomination = (movie: Movie) => {
+    const temp = nominations
+    temp.filter(m => movie != m)
+    setNominations(temp)
   }
 
-  const dummyMovies: Movie[] = [dummyMovie, dummyMovie]
-
+  const addNominations = (movie: Movie) => {
+    const temp = [...nominations, movie]
+    setNominations(temp)
+  }
   return (
-    <Background>
+    <>
       <GlobalFonts />
-      <Input width="500px" height="50px" fontSize="23px"></Input>
-      <h1>Hi</h1>
-      <MovieCard {...dummyMovie} />
-      <NominationList movies={dummyMovies} />
-    </Background>
+      <SearchBar setResults={setMovieResults} />
+      <Columns>
+        <LeftColumn>
+          <h1>Take your picks!</h1>
+          <ResultsList
+            movies={movieResults}
+            mayAdd={nominations.length < 5}
+            addNominations={addNominations}
+          />
+        </LeftColumn>
+        <RightColumn>
+          <h1>Nominees</h1>
+          <NominationList
+            movies={nominations}
+            removeNominations={removeNomination}
+          />
+        </RightColumn>
+      </Columns>
+    </>
   )
 }

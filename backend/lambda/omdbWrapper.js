@@ -6,8 +6,10 @@ exports.handler = async event => {
 
   const response = await new Promise((resolve, reject) => {
     const {
-      queryStringParameters: { title, search },
+      queryStringParameters: { t, s },
     } = event
+    const title = t
+    const search = s
     if (!title && !search) {
       resolve({
         statusCode: 400,

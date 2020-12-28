@@ -3,9 +3,7 @@ import 'styled-components'
 
 // and extend them!
 declare module 'styled-components' {
-  export interface InputTheme {
-    width?: string
-    height?: string
-    fontSize?: string
+  export interface InputEvent {
+    target: { value: string }
   }
 }

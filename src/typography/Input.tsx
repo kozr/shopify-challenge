@@ -1,9 +1,22 @@
 import React from 'react'
-import styled, { InputTheme } from 'styled-components'
+import styled from 'styled-components'
+import { InferProps } from 'prop-types'
+
+type StyledInput = {
+  type?: string
+  width?: string
+  height?: string
+  fontSize?: string
+  onChange?: (e: KeyboardEvent) => void
+  onKeyUp?: (e: KeyboardEvent) => void
+}
+
+// Using InferredProps because it's interesting
+type InferredProps = InferProps<StyledInput>
 
 const Input = styled.input.attrs({
   type: 'text',
-})<InputTheme>`
+})<InferredProps>`
   width: ${({ width }) => width ?? '200px'};
   height: ${({ height }) => height ?? '5%'};
   font-size: ${({ fontSize }) => fontSize ?? '12px'};
@@ -19,4 +32,4 @@ const Input = styled.input.attrs({
   }
 `
 
-export default (props: InputTheme): JSX.Element => <Input {...props}></Input>
+export default (props: InferredProps): JSX.Element => <Input {...props}></Input>

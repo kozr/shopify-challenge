@@ -1,12 +1,24 @@
+import { Movie } from '@components/MovieCard'
 import axios from 'axios'
-import { OMDB_WRAPPER_URL, KEYWORDS, MOVIE_TITLE } from '@constants/utilities'
+import { OMDB_WRAPPER_URL, KEYWORDS, MOVIE_TITLE } from '../constants/utilities'
 
 export interface OmdbQuery {
   method: string
   param: string
 }
 
-const callOmdb = ({ method, param }: OmdbQuery) => {
+interface ApiMoviesList {
+  Search: Movie[]
+}
+
+export interface OmdbResponse {
+  data: (Movie | ApiMoviesList) & { Response: boolean }
+}
+
+export const callOmdb = async ({
+  method,
+  param,
+}: OmdbQuery): Promise<Movie[]> => {
   let query
   switch (method) {
     case KEYWORDS:
@@ -18,5 +30,24 @@ const callOmdb = ({ method, param }: OmdbQuery) => {
     default:
       throw new Error(`Cannot call OMDB with '${method}'`)
   }
-  return axios.get(`${OMDB_WRAPPER_URL}${query}`)
+  const results: OmdbResponse = await axios.get(`${OMDB_WRAPPER_URL}${query}`)
+  return handleResponse(results, method)
+}
+
+export const handleResponse = (
+  response: OmdbResponse,
+  mode: string
+): Movie[] => {
+  if (!response.data.Response) return []
+  console.log(response)
+  switch (mode) {
+    case KEYWORDS: {
+      const { Search } = response.data as ApiMoviesList
+      return Search
+    }
+    case MOVIE_TITLE: {
+      const data = response.data as Movie
+      return [data]
+    }
+  }
 }

@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Movie } from './MovieCard'
-import { InferProps } from 'prop-types'
+import { Movie } from './ResultCard'
 
 const MovieContainer = styled.div`
   color: white;
 `
 
-type Movies = {
+interface NominationsListProps {
   movies: Movie[]
+  removeNominations: (m: Movie) => void
 }
 
-// Using InferredProps just for fun
-type InferredProps = InferProps<Movies>
-
-const NominationList = ({ movies }: InferredProps): JSX.Element => {
-  const [nominationsJSX, setNominationsJSX] = useState<JSX.Element[]>()
+const NominationList = ({ movies }: NominationsListProps): JSX.Element => {
+  const [nominationsJSX, setNominationsJSX] = useState<JSX.Element>()
   useEffect(() => {
-    const moviesJSX = movies.map(
-      ({ Title, Year, imdbID, Poster }: Movie, index: number) => (
-        <MovieContainer key={index}>
-          <h1>Title: {Title}</h1>
-          <p>Year: {Year}</p>
-          <p>IMDB ID:{imdbID}</p>
-          <img alt={Title} src={Poster}></img>
-        </MovieContainer>
+    if (movies) {
+      const moviesJSX = movies.map(
+        ({ Title, Year, imdbID, Poster }: Movie, index: number) => (
+          <MovieContainer key={index}>
+            <h1>Title: {Title}</h1>
+            <p>Year: {Year}</p>
+            <p>IMDB ID:{imdbID}</p>
+            <img alt={Title} src={Poster}></img>
+          </MovieContainer>
+        )
       )
-    )
-    setNominationsJSX(moviesJSX)
+      setNominationsJSX(<>{moviesJSX}</>)
+    } else {
+      setNominationsJSX(<p>no nominees</p>)
+    }
   }, [movies])
 
   return <>{nominationsJSX}</>

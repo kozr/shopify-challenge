@@ -21,9 +21,8 @@ module.exports = {
         },
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        use: 'file-loader',
-        type: 'asset/resource',
+        test: /\.(woff2|woff|eot|ttf|otf)$/,
+        use: ['file-loader'],
       },
       {
         test: /\.(js)$/,
