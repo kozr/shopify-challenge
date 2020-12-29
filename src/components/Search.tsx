@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
 import Input from '../typography/Input'
 import Radio from '../typography/Radio'
+import Label from '../typography/Label'
+import H1 from '../typography/H1'
 import { KEYWORDS, MOVIE_TITLE } from '../constants/utilities'
 import { callOmdb, OmdbQuery } from '../utilities/omdb'
 import { InferProps } from 'prop-types'
 import { Movie } from './Movie'
 
-type hook = {
-  setResults: React.Dispatch<React.SetStateAction<Movie[]>>
+type ReactHook = {
+  setResults: (movies: Movie[]) => void
 }
 
-// Using InferredProps because it's interesting
-type InferredProps = InferProps<hook>
+// Trying out InferProps because it's interesting, although not nessasary
+type InferredProp = InferProps<ReactHook>
 
-const SearchBar = ({ setResults }: InferredProps): JSX.Element => {
+const SearchBar = ({ setResults }: InferredProp): JSX.Element => {
   const [mode, setMode] = useState(KEYWORDS)
   const [input, setInput] = useState('')
+  const [alert, setAlert] = useState('')
 
   const handleKeyup = ({ key }: KeyboardEvent) => {
     switch (key) {
@@ -29,10 +32,13 @@ const SearchBar = ({ setResults }: InferredProps): JSX.Element => {
     try {
       const query: OmdbQuery = {
         method: mode,
-        param: input,
+        param: input.trim(),
       }
       const queryResults = await callOmdb(query)
       setResults(queryResults)
+      if (!queryResults || queryResults.length == 0) {
+        setAlert('Please be more precise!')
+      } else setAlert('')
     } catch (e) {
       console.warn(e)
     }
@@ -58,27 +64,34 @@ const SearchBar = ({ setResults }: InferredProps): JSX.Element => {
     <>
       <div>
         <Radio
+          id={KEYWORDS}
           value={KEYWORDS}
           name={KEYWORDS}
           checked={mode === KEYWORDS}
           onChange={setSearchMode}
         />
-        {KEYWORDS}
+        <Label for={KEYWORDS} paddingLeft="7%" paddingRight="7%">
+          {KEYWORDS}
+        </Label>
         <Radio
+          id={MOVIE_TITLE}
           value={MOVIE_TITLE}
           name={MOVIE_TITLE}
           checked={mode === MOVIE_TITLE}
           onChange={setSearchMode}
         />
-        {MOVIE_TITLE}
+        <Label for={MOVIE_TITLE} paddingLeft="7%" paddingRight="7%">
+          {MOVIE_TITLE}
+        </Label>
       </div>
       <Input
-        width="500px"
+        width="75%"
         height="50px"
         fontSize="23px"
         onChange={handleInput}
         onKeyUp={handleKeyup}
       ></Input>
+      <H1>{alert}</H1>
     </>
   )
 }

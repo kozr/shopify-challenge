@@ -8,6 +8,13 @@ const MovieContainer = styled.div`
   color: white;
 `
 
+const StyledButton = styled(Button)`
+  color: white;
+  margin: auto;
+  display: block;
+  margin-bottom: 30px;
+`
+
 interface NominationsListProps {
   movies: Movie[]
   removeNomination: (m: Movie) => void
@@ -23,14 +30,10 @@ const NominationList = ({
       const moviesJSX = movies.map((movie: Movie, index: number) => (
         <MovieContainer key={index}>
           <NomineeCard {...movie} />
-          <Button onClick={() => removeNomination(movie)}>
-            Remove Nominee
-          </Button>
+          <StyledButton onClick={() => removeNomination(movie)}>-</StyledButton>
         </MovieContainer>
       ))
       setNominationsJSX(<>{moviesJSX}</>)
-    } else {
-      setNominationsJSX(<p>no nominees</p>)
     }
   }, [movies, removeNomination])
 

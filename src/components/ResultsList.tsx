@@ -2,12 +2,18 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ResultCard from './ResultCard'
-import DisabledButton from '../typography/DisabledButton'
 import Button from '../typography/Button'
 import { Movie } from './Movie'
 
 const MovieContainer = styled.div`
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 45vw;
+  height: 225px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 `
 
 type ResultListProps = {
@@ -21,23 +27,16 @@ const ResultsList = ({
   addNomination,
 }: ResultListProps): JSX.Element => {
   const [resultsJSX, setResultsJSX] = useState<JSX.Element>()
+
   useEffect(() => {
-    console.log()
     if (movies) {
       const moviesJSX = movies.map((movie: Movie, index: number) => (
         <MovieContainer key={index}>
           <ResultCard {...movie} />
-          {mayAdd ? (
-            <Button onClick={() => addNomination(movie)}>Nominate</Button>
-          ) : (
-            <DisabledButton>Nominate</DisabledButton>
-          )}
+          {mayAdd && <Button onClick={() => addNomination(movie)}>+</Button>}
         </MovieContainer>
       ))
       setResultsJSX(<>{moviesJSX}</>)
-    } else {
-      const errorJSX = <h1>Results not found, please be more precise</h1>
-      setResultsJSX(errorJSX)
     }
   }, [movies, mayAdd, addNomination])
 

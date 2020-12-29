@@ -19,6 +19,7 @@ export const callOmdb = async ({
   method,
   param,
 }: OmdbQuery): Promise<Movie[]> => {
+  if (!param) return []
   let query
   switch (method) {
     case KEYWORDS:

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { InferProps } from 'prop-types'
 
 type StyledInput = {
-  type?: string
   width?: string
   height?: string
   fontSize?: string
@@ -23,7 +22,7 @@ const Input = styled.input.attrs({
   color: white;
   font-family: 'HKGrotesk Light';
   padding: 5px 10px 5px 10px;
-  margin: 7px 0;
+  margin: 20px 0 20px 0;
   box-sizing: border-box;
   border: 2px solid white;
   background-color: rgba(0%, 0%, 0%, 10%);
