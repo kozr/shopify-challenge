@@ -17,12 +17,12 @@ Next time I'll pick up a few tricks on how to optimize performance based on the 
 - [X] Display a banner when the user has 5 nominations.
 
 ## Extras:
-- [X] Done in strict TypeScript mode
-- [X] Save nomination lists in localstorage
-- [X] Hid API keys in a custom lambda wrapper
-- [X] 100% Accessbility from Lighthouse
-- [X] 100% Best practice from Lighthouse
-- [X] Removed search results that are already in the nominations list
+- [X] Done in TypeScript strict mode
+- [X] Save and retrieve nominated movies from localstorage
+- [X] Hid API keys in a custom lambda wrapper for security reasons
+- [X] 100% score for Accessbility from Lighthouse
+- [X] 100% score for Best Practices from Lighthouse
+- [X] Removed search results that were already in the nominations list
 
 ![image](https://user-images.githubusercontent.com/40312631/103390274-6ac2d480-4ac8-11eb-9dfd-8bd6ef083202.png)
 
