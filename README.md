@@ -26,3 +26,4 @@ Next time I'll pick up a few tricks on how to optimize performance based on the 
 
 ![image](https://user-images.githubusercontent.com/40312631/103390274-6ac2d480-4ac8-11eb-9dfd-8bd6ef083202.png)
 
+![image](https://user-images.githubusercontent.com/40312631/103403240-497fd980-4b04-11eb-9f3c-83f038b17bcd.png)
