@@ -19,7 +19,7 @@ Next time I'll pick up a few tricks on how to optimize performance based on the 
 ## Extras:
 - [X] Done in TypeScript strict mode
 - [X] Save and retrieve nominated movies from localstorage
-- [X] Hid API keys in a custom lambda wrapper for security reasons (In a work environment, we can also restrict access to those who has access to some VPC only)
+- [X] Hid API keys in a custom lambda wrapper for security reasons (In a work environment, we can also restrict lambda access to those who has access to some VPC only)
 - [X] 100% score for Accessbility from Lighthouse
 - [X] 100% score for Best Practices from Lighthouse
 - [X] Removed search results that were already in the nominations list
