@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import { getFromStorage, saveToStorage } from '../utilities/storage'
 
 import H1 from '../typography/H1'
+import SucessBanner from './SuccessBanner'
 
 const Columns = styled.div`
   display: flex;
@@ -72,6 +73,7 @@ export function App(): JSX.Element {
   return (
     <>
       <GlobalFonts />
+      <SucessBanner isDisplay={nominations.length >= 5} />
       <Columns>
         <LeftColumn>
           <H1>Search by...</H1>
