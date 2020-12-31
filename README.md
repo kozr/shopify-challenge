@@ -22,6 +22,7 @@ Next time I'll pick up a few tricks on how to optimize performance based on the 
 - [X] Hid API keys in a custom lambda wrapper
 - [X] 100% Accessbility from Lighthouse
 - [X] 100% Best practice from Lighthouse
+- [X] Removed search results that are already in the nominations list
 
 ![image](https://user-images.githubusercontent.com/40312631/103390274-6ac2d480-4ac8-11eb-9dfd-8bd6ef083202.png)
 
