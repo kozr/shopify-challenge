@@ -1,5 +1,7 @@
 # Shopify-challenge
 
+[Demo](https://kozr.github.io/shopify-challenge/)
+
 I've made plenty of web apps before. Whether it was for personal use, work, or the hackathon community, I always try to learn a new thing or two every new project. This time, I decided to not use boilerplate code and to also try TypeScript on the frontend.
 
 I learned a few things from this project. Arguably, TypeScript isn't the most "bang for the time" for frontend development. It takes longer to develop a full feature, but of course, it could pay off when others start using the code as well. It was also good to learn how to set up webpack, eslint, tsconfig, babel, and prettier.
