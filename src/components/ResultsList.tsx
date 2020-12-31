@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ResultCard from './ResultCard'
 import Button from '../typography/Button'
-import { Movie } from './Movie'
+import { Movie } from '../types/movie'
 
 const MovieContainer = styled.div`
   color: white;
@@ -16,11 +16,12 @@ const MovieContainer = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 `
 
-type ResultListProps = {
+interface ResultListProps {
   movies: Movie[]
   mayAdd: boolean
   addNomination: (m: Movie) => void
 }
+
 const ResultsList = ({
   movies,
   mayAdd,

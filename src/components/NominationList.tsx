@@ -1,7 +1,7 @@
 import Button from '../typography/Button'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Movie } from './Movie'
+import { Movie } from '../types/movie'
 import NomineeCard from './NomineeCard'
 
 const MovieContainer = styled.div`

@@ -3,7 +3,7 @@ import GlobalFonts from '../styles/fonts'
 
 import Search from './Search'
 import NominationList from './NominationList'
-import { Movie } from './Movie'
+import { Movie } from '../types/movie'
 import ResultsList from './ResultsList'
 import styled from 'styled-components'
 import { getFromStorage, saveToStorage } from '../utilities/storage'

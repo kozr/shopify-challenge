@@ -9,16 +9,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "typeRoots": ["node_modules/@types", "src/types"],
-    "paths": {
-      "@components/*": ["./src/components/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@utilities/*": ["./src/utilities/*"],
-      "@typography/*": ["./src/typography/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@images/*": ["./public/images/*"],
-      "@backgrounds/*": ["./public/backgrounds/*"]
-    }
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

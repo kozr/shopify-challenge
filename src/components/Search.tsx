@@ -6,7 +6,7 @@ import H1 from '../typography/H1'
 import { KEYWORDS, MOVIE_TITLE } from '../constants/utilities'
 import { callOmdb, OmdbQuery } from '../utilities/omdb'
 import { InferProps } from 'prop-types'
-import { Movie } from './Movie'
+import { Movie } from '../types/movie'
 
 type ReactHook = {
   setResults: (movies: Movie[]) => void

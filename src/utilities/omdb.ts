@@ -1,4 +1,4 @@
-import { Movie } from '../components/Movie'
+import { Movie } from '../types/movie'
 import axios from 'axios'
 import { OMDB_WRAPPER_URL, KEYWORDS, MOVIE_TITLE } from '../constants/utilities'
 
@@ -7,12 +7,8 @@ export interface OmdbQuery {
   param: string
 }
 
-interface ApiMoviesList {
-  Search: Movie[]
-}
-
-export interface OmdbResponse {
-  data: (Movie | ApiMoviesList) & { Response: boolean }
+interface OmdbResponse {
+  data: (Movie | { Search: Movie[] }) & { Response: boolean }
 }
 
 export const callOmdb = async ({
@@ -35,15 +31,12 @@ export const callOmdb = async ({
   return handleResponse(results, method)
 }
 
-export const handleResponse = (
-  response: OmdbResponse,
-  mode: string
-): Movie[] => {
+const handleResponse = (response: OmdbResponse, mode: string): Movie[] => {
   if (!response.data.Response) return []
   console.log(response)
   switch (mode) {
     case KEYWORDS: {
-      const { Search } = response.data as ApiMoviesList
+      const { Search } = response.data as { Search: Movie[] }
       return Search
     }
     case MOVIE_TITLE: {

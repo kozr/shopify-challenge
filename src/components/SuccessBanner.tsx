@@ -10,7 +10,7 @@ const Notice = styled.div<BannerProps>`
   font-size: 23px;
 `
 
-type BannerProps = {
+interface BannerProps {
   isDisplay: boolean
 }
 
